@@ -1,0 +1,53 @@
+{
+  "name": "it-bens/shopware-code-based-plugin-configuration",
+  "description": "Package to provide a code based and typed way to create Shopware configurations besides XML files.",
+  "version": "0.1.0",
+  "type": "package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Martin Bens",
+      "email": "martin.bens@it-bens.de"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "shopware/core": "^6.5"
+  },
+  "require-dev": {
+    "captainhook/captainhook": "^5.23",
+    "captainhook/plugin-composer": "^5.3",
+    "frosh/shopware-rector": "^0.3.0",
+    "phpstan/phpstan": "^1.10",
+    "phpstan/phpstan-phpunit": "^1.3",
+    "phpstan/phpstan-symfony": "^1.3",
+    "phpunit/phpunit": "^10.5",
+    "rector/rector": "^1.0",
+    "symplify/coding-standard": "^12.0",
+    "symplify/easy-coding-standard": "^12.1"
+  },
+  "extra": {
+    "phpstan": {
+      "includes": [
+        "extension.neon"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "ITB\\ShopwareCodeBasedPluginConfiguration\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "symfony/runtime": true,
+      "captainhook/plugin-composer": true
+    }
+  }
+}

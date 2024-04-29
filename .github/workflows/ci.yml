@@ -1,0 +1,97 @@
+name: PHP CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+
+  code-style:
+    name: Code style
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        php-versions: ['8.1']
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Update dependencies with composer
+        run: composer update --no-interaction --no-ansi --no-progress
+
+      - name: Run ECS
+        run: ./vendor/bin/ecs --config=ecs.php check src tests
+
+  static-analysis:
+    name: Static analysis (PHPStan)
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        php-versions: ['8.1']
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Update dependencies with composer
+        run: composer update --no-interaction --no-ansi --no-progress
+
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan analyse --configuration phpstan.neon
+
+  unit-tests:
+    name: Unit tests
+    runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        php-versions: ['8.1', '8.2']
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Update dependencies with composer
+        run: composer update --no-interaction --no-ansi --no-progress
+
+      - name: Run PHPUnit
+        run: XDEBUG_MODE=coverage ./vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-clover ./coverage.xml
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@e0b68c6749509c5f83f984dd99a76a1c1a231044
+        with:
+          files: ./coverage.xml
+          verbose: true
+          token: ${{ secrets.CODECOV_TOKEN }}

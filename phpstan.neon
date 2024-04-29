@@ -1,0 +1,8 @@
+parameters:
+    level: max
+    reportUnmatchedIgnoredErrors: true
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+    paths:
+        - src
+        - tests
