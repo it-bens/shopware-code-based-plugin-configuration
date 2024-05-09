@@ -1,5 +1,8 @@
 # Shopware Code-Based Plugin Configuration
 
+[![Tests](https://github.com/it-bens/shopware-code-based-plugin-configuration/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/it-bens/shopware-code-based-plugin-configuration/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/it-bens/shopware-code-based-plugin-configuration/branch/main/graph/badge.svg?token=jWZCkC3PTl)](https://codecov.io/gh/it-bens/shopware-code-based-plugin-configuration)
+
 Shopware provides an easy way to create a plugin configuration without any implementing any frontend code: https://developer.shopware.com/docs/guides/plugins/plugins/plugin-fundamentals/add-plugin-configuration.html
 
 While the underlying system for the internal configuration generation is very flexible, the `config.xml` file is the only way to leverage this system. This package aims to provide another method: code-based configuration generation.
