@@ -1,7 +1,6 @@
 {
   "name": "it-bens/shopware-code-based-plugin-configuration",
   "description": "Package to provide a code based and typed way to create Shopware configurations besides XML files.",
-  "version": "0.1.0",
   "type": "package",
   "license": "MIT",
   "authors": [
