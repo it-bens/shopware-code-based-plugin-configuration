@@ -22,12 +22,12 @@ final class ConfigurationCardConfigReaderPass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         foreach ($container->getDefinitions() as $id => $definition) {
-            $class = $definition->getClass();
-            if ($class === null) {
+            $reflection = $container->getReflectionClass($definition->getClass(), false);
+            if (! $reflection instanceof \ReflectionClass) {
                 continue;
             }
 
-            if (is_subclass_of($class, ConfigurationCardProvider::class)) {
+            if ($reflection->implementsInterface(ConfigurationCardProvider::class)) {
                 $definition->addTag(self::CONFIGURATION_CARD_PROVIDER_TAG);
                 $container->setDefinition($id, $definition);
             }
