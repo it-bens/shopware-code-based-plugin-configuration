@@ -38,7 +38,7 @@ public function build(ContainerBuilder $container): void
     // ...
     parent::build($container);
 
-    $container->addCompilerPass(new BoolToYesNoCompilerPass());
+    $container->addCompilerPass(new ConfigurationCardConfigReaderPass());
 }
 ```
 
