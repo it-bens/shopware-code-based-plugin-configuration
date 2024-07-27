@@ -37,6 +37,9 @@ final class SingleSelectFieldOptionTest extends TestCase
         $this->assertInstanceOf(SingleSelectFieldOption::class, $singleSelectFieldOption);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getDefinitionProvider')]
     public function testGetDefinition(SingleSelectFieldOption $singleSelectFieldOption, array $expectedData): void
     {

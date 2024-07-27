@@ -41,6 +41,9 @@ final class GeneralFieldInformationTest extends TestCase
         $this->assertInstanceOf(GeneralFieldInformation::class, $fieldInformation);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getDefinitionProvider')]
     public function testGetDefinition(GeneralFieldInformation $fieldInformation, array $expectedData): void
     {

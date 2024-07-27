@@ -66,6 +66,9 @@ final class BoolFieldTest extends TestCase
         $this->assertInstanceOf(BoolField::class, $field);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getDefinitionProvider')]
     public function testGetDefinition(BoolField $field, array $expectedData): void
     {

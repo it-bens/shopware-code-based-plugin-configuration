@@ -13,6 +13,13 @@ final class GeneralFieldInformation
     ) {
     }
 
+    /**
+     * @return array{
+     *     name: string,
+     *     label: array{'en-GB': string, 'de-DE': string},
+     *     helpText: array{'en-GB': string|null, 'de-DE': string|null},
+     * }
+     */
     public function getDefinition(): array
     {
         return [

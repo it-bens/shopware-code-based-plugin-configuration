@@ -6,6 +6,9 @@ use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\Confi
 use Shopware\Core\Framework\Bundle;
 use Shopware\Core\System\SystemConfig\Util\ConfigReader as BundleXmlConfigReader;
 
+/**
+ * @phpstan-import-type ConfigurationCardDefinition from ConfigurationCard
+ */
 final class ConfigurationCardConfigReader extends BundleXmlConfigReader
 {
     public function __construct(
@@ -14,6 +17,9 @@ final class ConfigurationCardConfigReader extends BundleXmlConfigReader
     ) {
     }
 
+    /**
+     * @return ConfigurationCardDefinition[]
+     */
     public function getConfigFromBundle(Bundle $bundle, ?string $bundleConfigName = null): array
     {
         $config = $this->bundleXmlConfigReader->getConfigFromBundle($bundle, $bundleConfigName);

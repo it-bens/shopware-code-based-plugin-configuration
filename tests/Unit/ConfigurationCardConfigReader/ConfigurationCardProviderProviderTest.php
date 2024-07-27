@@ -42,6 +42,9 @@ final class ConfigurationCardProviderProviderTest extends TestCase
         ];
     }
 
+    /**
+     * @param ConfigurationCardProvider[] $configurationCardProviders
+     */
     #[DataProvider('constructionProvider')]
     public function testConstruction(array $configurationCardProviders): void
     {
@@ -49,6 +52,9 @@ final class ConfigurationCardProviderProviderTest extends TestCase
         $this->assertInstanceOf(ConfigurationCardProviderProvider::class, $configurationCardProviderProvider);
     }
 
+    /**
+     * @param ConfigurationCardProvider[] $expectedConfigurationCardProviders
+     */
     #[DataProvider('getConfigurationCardProvidersProvider')]
     public function testGetConfigurationCardProviders(
         ConfigurationCardProviderProvider $configurationCardProviderProvider,

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Unit;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCard;
+use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -31,6 +32,9 @@ final class ConfigurationCardTest extends TestCase
         ];
     }
 
+    /**
+     * @param ConfigurationInputField[] $inputFields
+     */
     #[DataProvider('constructionProvider')]
     public function testConstruction(string $titleInEnglish, string $titleInGerman, array $inputFields): void
     {
@@ -38,6 +42,9 @@ final class ConfigurationCardTest extends TestCase
         $this->assertInstanceOf(ConfigurationCard::class, $card);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getDefinitionProvider')]
     public function testGetDefinition(ConfigurationCard $card, array $expectedData): void
     {

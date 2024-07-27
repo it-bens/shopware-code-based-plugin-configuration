@@ -60,6 +60,9 @@ final class SingleSelectFieldTest extends TestCase
         ];
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('constructionProvider')]
     public function testConstruction(GeneralFieldInformation $generalInformation, string $defaultValue, array $options): void
     {
@@ -67,6 +70,9 @@ final class SingleSelectFieldTest extends TestCase
         $this->assertInstanceOf(SingleSelectField::class, $field);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getDefinitionProvider')]
     public function testGetDefinition(SingleSelectField $field, array $expectedData): void
     {

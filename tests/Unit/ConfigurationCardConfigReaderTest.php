@@ -113,6 +113,9 @@ final class ConfigurationCardConfigReaderTest extends TestCase
         $this->assertInstanceOf(ConfigurationCardConfigReader::class, $configReader);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getConfigFromBundleProvider')]
     public function testGetConfigFromBundle(ConfigurationCardConfigReader $configReader, Bundle $bundle, array $expectedConfig): void
     {

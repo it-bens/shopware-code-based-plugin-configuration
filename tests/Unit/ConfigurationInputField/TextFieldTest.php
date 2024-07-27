@@ -66,6 +66,9 @@ final class TextFieldTest extends TestCase
         $this->assertInstanceOf(TextField::class, $field);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getDefinitionProvider')]
     public function testGetDefinition(TextField $field, array $expectedData): void
     {

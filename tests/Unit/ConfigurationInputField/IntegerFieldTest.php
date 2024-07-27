@@ -66,6 +66,9 @@ final class IntegerFieldTest extends TestCase
         $this->assertInstanceOf(IntegerField::class, $field);
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     #[DataProvider('getDefinitionProvider')]
     public function testGetDefinition(IntegerField $field, array $expectedData): void
     {

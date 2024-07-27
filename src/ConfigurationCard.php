@@ -2,6 +2,14 @@
 
 namespace ITB\ShopwareCodeBasedPluginConfiguration;
 
+/**
+ * @phpstan-import-type ConfigurationInputFieldDefinition from ConfigurationInputField
+ * @phpstan-type ConfigurationCardDefinition array{
+ *     title: array{'en-GB': string, 'de-DE': string},
+ *     name: null,
+ *     elements: ConfigurationInputFieldDefinition[]
+ * }
+ */
 final class ConfigurationCard
 {
     /**
@@ -14,6 +22,9 @@ final class ConfigurationCard
     ) {
     }
 
+    /**
+     * @return ConfigurationCardDefinition
+     */
     public function getDefinition(): array
     {
         return [

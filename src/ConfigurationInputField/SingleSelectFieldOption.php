@@ -2,6 +2,12 @@
 
 namespace ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField;
 
+/**
+ * @phpstan-type SingleSelectFieldOptionDefinition array{
+ *     id: string,
+ *     name: array{'en-GB': string, 'de-DE': string}
+ * }
+ */
 final class SingleSelectFieldOption
 {
     public function __construct(
@@ -11,6 +17,9 @@ final class SingleSelectFieldOption
     ) {
     }
 
+    /**
+     * @return SingleSelectFieldOptionDefinition
+     */
     public function getDefinition(): array
     {
         return [
