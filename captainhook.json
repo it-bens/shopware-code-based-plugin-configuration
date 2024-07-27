@@ -38,7 +38,7 @@
         ]
       },
       {
-        "action": "vendor/bin/phpstan analyze -c phpstan-local.neon --memory-limit=-1 src"
+        "action": "vendor/bin/phpstan analyze -c phpstan.neon --memory-limit=-1"
       }
     ]
   },
