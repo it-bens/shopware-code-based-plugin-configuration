@@ -28,7 +28,7 @@ public function executeComposerCommands(): bool
 }
 ```
 
-This package provides a Symfony compiler pass that will add all the services to the Shopware plugin service container. It can be added to the plugin's `build` method.
+This package provides two Symfony compiler passes. The `ConfigurationCardConfigReaderPass` will add all the services necessary for the configuration generation to the service container. It can be added to the plugin's `build` method.
 
 ```php
 use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
@@ -41,6 +41,26 @@ public function build(ContainerBuilder $container): void
     $container->addCompilerPass(new ConfigurationCardConfigReaderPass());
 }
 ```
+
+### Why are the default configuration values missing?
+
+While the mentioned compiler pass is sufficient to generate the plugin configuration at runtime, a convenient feature is missing: default values. The `ConfigurationCardConfigSaverPass` is required to "hack" into the Shopware plugin configuration persistence.
+
+```php
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigSaverPass;
+
+public function build(ContainerBuilder $container): void
+{
+    // ...
+    parent::build($container);
+
+    $container->addCompilerPass(new ConfigurationCardConfigReaderPass());
+    $container->addCompilerPass(new ConfigurationCardConfigSaverPass());
+}
+```
+
+For detailed information why this is necessary and why the usage is "hacky" look at [How does the package work? - Shopware plugin configuration persistence](#shopware-plugin-configuration-persistence).
 
 ## How can I use this package?
 
@@ -158,6 +178,16 @@ The decoration is done via compiler pass in three steps:
 2. a `ConfigurationCardProviderProvider` definition is created that receives all services from (1).
 3. the `ConfigurationCardConfigReader` definition is created with decoration of the `Shopware\Core\System\SystemConfig\Util\ConfigReader` service and the `ConfigurationCardProviderProvider` is injected into the `ConfigurationCardConfigReader`.
 4. the `ConfigurationCardConfigReader` is set as an alias for the `Shopware\Core\System\SystemConfig\Util\ConfigReader` service to replace it.
+
+### Shopware plugin configuration persistence
+
+Shopware saves plugin configurations in it's database as key-value pairs. When a plugin is installed, Shopware reads the configuration with the `Shopware\Core\System\SystemConfig\Util\ConfigReader` and persists the default values. However, the services of a plugin are added to the DI container during the plugin activation and not the installation. This means that the service decoration that allows the code-based configuration generation is not used during the installation. Only the default values from the `config.xml` file are persisted as a result.
+
+This package provides a service subscriber that subscribes to the Shopware `PluginPostActivateEvent` and the `PluginPostUpdateEvent`. The service requires the plugin/bundle instance to perform the configuration persistence. The subscriber checks if the configuration persistence is necessary by using the plugin base class from the events the bundle classes defined in the registered `ConfigurationCardProvider` instances and fetches the plugin instance from the `KernelPluginCollection`service. The compiler pass takes care of the service definition, argument injection and the subscription tagging.
+
+Shopware checks for already persisted configuration values and does not overwrite them. So multiple installations/deinstallations/activations/deactivations of a plugin that uses this package will not reset the configuration values unless the "remove all data" option is used.
+
+The HTTP cache might be reset after the plugin activation. To avoid issues with the newly persisted configuration values, the event subscriber is registered with a priority of 100 to be executed as early as possible (at least earlier before other event subscribers with priority 0).
 
 ## Contributing
 I am really happy that the software developer community loves Open Source, like I do! ♥
