@@ -61,7 +61,7 @@ final class SingleSelectFieldTest extends TestCase
     }
 
     /**
-     * @phpstan-ignore-next-line
+     * @param SingleSelectFieldOption[] $options
      */
     #[DataProvider('constructionProvider')]
     public function testConstruction(GeneralFieldInformation $generalInformation, string $defaultValue, array $options): void

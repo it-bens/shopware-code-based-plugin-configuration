@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method ITB\\ShopwareCodeBasedPluginConfiguration\\ConfigurationCardConfigReader\:\:getConfigFromBundle\(\) should return array\<array\{title\: array\{en\-GB\: string, de\-DE\: string\}, name\: null, elements\: array\<array\{name\: string, label\: array\{en\-GB\: string, de\-DE\: string\}, helpText\: array\{en\-GB\: string\|null, de\-DE\: string\|null\}, type\: string, defaultValue\: string\|null, options\?\: array\<array\{id\: string, name\: array\{en\-GB\: string, de\-DE\: string\}\}\>\}\>\}\> but returns array\<array\<string, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: src/ConfigurationCardConfigReader.php
