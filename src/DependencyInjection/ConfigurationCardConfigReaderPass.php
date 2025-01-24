@@ -21,6 +21,10 @@ final class ConfigurationCardConfigReaderPass implements CompilerPassInterface
 
     public function process(ContainerBuilder $container): void
     {
+        if ($this->didCompilerPassAlreadyRun($container)) {
+            return;
+        }
+
         foreach ($container->getDefinitions() as $id => $definition) {
             $reflection = $container->getReflectionClass($definition->getClass(), false);
             if (! $reflection instanceof \ReflectionClass) {
@@ -72,5 +76,42 @@ final class ConfigurationCardConfigReaderPass implements CompilerPassInterface
         $container->setAlias(BundleXmlConfigReader::class, ConfigurationCardConfigReader::class)->setPublic(
             $isBundleXmlConfigReaderDefinitionPublic
         );
+    }
+
+    private function didCompilerPassAlreadyRun(ContainerBuilder $container): bool
+    {
+        if ($container->hasDefinition(ConfigurationCardProviderProvider::class)) {
+            if ($container->hasAlias(ConfigurationCardProviderProviderInterface::class)) {
+                if ($container->hasDefinition(ConfigurationCardConfigReader::class)) {
+                    if ($container->hasAlias(BundleXmlConfigReader::class)) {
+                        if ((string) $container->getAlias(BundleXmlConfigReader::class) === ConfigurationCardConfigReader::class) {
+                            return true;
+                        }
+
+                        throw new \LogicException(sprintf(
+                            'The compiler contains the alias %s but it does not point to %s.',
+                            BundleXmlConfigReader::class,
+                            ConfigurationCardConfigReader::class
+                        ));
+                    }
+
+                    throw new \LogicException(sprintf(
+                        'The compiler contains a definition for %s but not the alias for %s.',
+                        ConfigurationCardConfigReader::class,
+                        BundleXmlConfigReader::class
+                    ));
+                }
+
+                throw new \LogicException(sprintf('The compiler contains no definition for %s.', ConfigurationCardConfigReader::class));
+            }
+
+            throw new \LogicException(sprintf(
+                'The compiler contains a definition for %s but not the alias for %s.',
+                ConfigurationCardProviderProvider::class,
+                ConfigurationCardProviderProviderInterface::class
+            ));
+        }
+
+        return false;
     }
 }
