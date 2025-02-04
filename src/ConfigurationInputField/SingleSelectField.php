@@ -7,15 +7,15 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField;
 use ITB\ShopwareCodeBasedPluginConfiguration\GeneralFieldInformation;
 
-final class SingleSelectField implements ConfigurationInputField
+final readonly class SingleSelectField implements ConfigurationInputField
 {
     /**
      * @param SingleSelectFieldOption[] $options
      */
     public function __construct(
-        private readonly GeneralFieldInformation $generalInformation,
-        private readonly ?string $defaultValue,
-        private readonly array $options
+        private GeneralFieldInformation $generalInformation,
+        private ?string $defaultValue,
+        private array $options
     ) {
     }
 

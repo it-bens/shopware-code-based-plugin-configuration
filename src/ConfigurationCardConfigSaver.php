@@ -12,12 +12,12 @@ use Shopware\Core\Framework\Plugin\KernelPluginCollection;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-final class ConfigurationCardConfigSaver implements EventSubscriberInterface
+final readonly class ConfigurationCardConfigSaver implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly ConfigurationCardProviderProviderInterface $configurationCardProviderProvider,
-        private readonly KernelPluginCollection $kernelPluginCollection,
-        private readonly SystemConfigService $systemConfigService
+        private ConfigurationCardProviderProviderInterface $configurationCardProviderProvider,
+        private KernelPluginCollection $kernelPluginCollection,
+        private SystemConfigService $systemConfigService
     ) {
     }
 

@@ -6,13 +6,13 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
 
-final class ConfigurationCardProviderProvider implements ConfigurationCardProviderProviderInterface
+final readonly class ConfigurationCardProviderProvider implements ConfigurationCardProviderProviderInterface
 {
     /**
      * @param iterable<ConfigurationCardProvider> $configurationCardProviders
      */
     public function __construct(
-        private readonly iterable $configurationCardProviders
+        private iterable $configurationCardProviders
     ) {
     }
 

@@ -12,15 +12,15 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration;
  *     elements: ConfigurationInputFieldDefinition[]
  * }
  */
-final class ConfigurationCard
+final readonly class ConfigurationCard
 {
     /**
      * @param ConfigurationInputField[] $inputFields
      */
     public function __construct(
-        private readonly string $titleInEnglish,
-        private readonly string $titleInGerman,
-        private readonly array $inputFields,
+        private string $titleInEnglish,
+        private string $titleInGerman,
+        private array $inputFields,
     ) {
     }
 

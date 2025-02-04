@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace ITB\ShopwareCodeBasedPluginConfiguration;
 
-final class GeneralFieldInformation
+final readonly class GeneralFieldInformation
 {
     public function __construct(
-        private readonly string $name,
-        private readonly string $labelInEnglish,
-        private readonly string $labelInGerman,
-        private readonly ?string $helpTextInEnglish,
-        private readonly ?string $helpTextInGerman,
+        private string $name,
+        private string $labelInEnglish,
+        private string $labelInGerman,
+        private ?string $helpTextInEnglish,
+        private ?string $helpTextInGerman,
     ) {
     }
 

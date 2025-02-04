@@ -10,12 +10,12 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField;
  *     name: array{'en-GB': string, 'de-DE': string}
  * }
  */
-final class SingleSelectFieldOption
+final readonly class SingleSelectFieldOption
 {
     public function __construct(
-        private readonly string $id,
-        private readonly string $nameInEnglish,
-        private readonly string $nameInGerman,
+        private string $id,
+        private string $nameInEnglish,
+        private string $nameInGerman,
     ) {
     }
 

@@ -7,11 +7,11 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField;
 use ITB\ShopwareCodeBasedPluginConfiguration\GeneralFieldInformation;
 
-final class TextField implements ConfigurationInputField
+final readonly class TextField implements ConfigurationInputField
 {
     public function __construct(
-        private readonly GeneralFieldInformation $generalInformation,
-        private readonly ?string $defaultValue,
+        private GeneralFieldInformation $generalInformation,
+        private ?string $defaultValue,
     ) {
     }
 

@@ -35,12 +35,13 @@ use Rector\ValueObject\PhpVersion;
 return RectorConfig::configure()
     ->withPaths([__DIR__ . '/src', __DIR__ . '/tests'])
 
-    ->withPhpVersion(PhpVersion::PHP_81)
+    ->withPhpVersion(PhpVersion::PHP_82)
 
     ->withSets([
         SetList::PHP_74,
         SetList::PHP_80,
         SetList::PHP_81,
+        SetList::PHP_82,
         SymfonySetList::SYMFONY_54,
         SymfonySetList::SYMFONY_61,
         SymfonySetList::SYMFONY_62,
