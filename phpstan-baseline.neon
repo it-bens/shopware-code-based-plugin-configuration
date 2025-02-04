@@ -5,3 +5,21 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: src/ConfigurationCardConfigReader.php
+
+		-
+			message: '#^Cannot access offset ''priority'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/DependencyInjection/ConfigurationCardConfigReaderPass.php
+
+		-
+			message: '#^Parameter \#2 \$priority of method ITB\\ShopwareCodeBasedPluginConfiguration\\DependencyInjection\\ConfigurationCardProviderReferenceCollection\:\:add\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/DependencyInjection/ConfigurationCardConfigReaderPass.php
+
+		-
+			message: '#^Parameter \#2 \$configurator of method Symfony\\Component\\DependencyInjection\\ContainerBuilder\:\:registerAttributeForAutoconfiguration\(\) expects callable\(Symfony\\Component\\DependencyInjection\\ChildDefinition, ITB\\ShopwareCodeBasedPluginConfiguration\\Attribute\\AsConfigurationCardProvider, Reflector\)\: void, Closure\(Symfony\\Component\\DependencyInjection\\ChildDefinition, ITB\\ShopwareCodeBasedPluginConfiguration\\Attribute\\AsConfigurationCardProvider, ReflectionClass\)\: void given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/DependencyInjection/ConfigurationCardProviderTaggingPass.php
