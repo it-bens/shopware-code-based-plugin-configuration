@@ -84,9 +84,9 @@ final class ConfigurationCardProviderProviderTest extends TestCase
             $configurationCardProvider1,
             $configurationCardProvider2,
         ]);
-        yield 'with two configuration card providers with different priorities' => [
+        yield 'with two configuration card providers' => [
             $configurationCardProviderProvider,
-            [$configurationCardProvider2, $configurationCardProvider1],
+            [$configurationCardProvider1, $configurationCardProvider2],
         ];
     }
 
