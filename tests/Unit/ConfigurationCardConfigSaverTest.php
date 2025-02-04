@@ -8,6 +8,7 @@ use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\Confi
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProviderInterface;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigSaver;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Bundle;
@@ -18,6 +19,7 @@ use Shopware\Core\Framework\Plugin\KernelPluginCollection;
 use Shopware\Core\Framework\Plugin\PluginEntity;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 
+#[CoversClass(ConfigurationCardConfigSaver::class)]
 final class ConfigurationCardConfigSaverTest extends TestCase
 {
     public static function saveConfigurationSkippedProvider(): \Generator

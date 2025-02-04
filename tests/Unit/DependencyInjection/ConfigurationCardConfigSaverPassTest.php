@@ -8,6 +8,7 @@ use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\Confi
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigSaver;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigSaverPass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Plugin\KernelPluginCollection;
@@ -16,6 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 
+#[CoversClass(ConfigurationCardConfigSaverPass::class)]
 final class ConfigurationCardConfigSaverPassTest extends TestCase
 {
     public static function processProvider(): \Generator

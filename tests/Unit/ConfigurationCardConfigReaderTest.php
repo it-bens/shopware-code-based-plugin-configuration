@@ -10,11 +10,13 @@ use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\Confi
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField\BoolField;
 use ITB\ShopwareCodeBasedPluginConfiguration\GeneralFieldInformation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Bundle;
 use Shopware\Core\System\SystemConfig\Util\ConfigReader as BundleXmlConfigReader;
 
+#[CoversClass(ConfigurationCardConfigReader::class)]
 final class ConfigurationCardConfigReaderTest extends TestCase
 {
     public static function constructionProvider(): \Generator

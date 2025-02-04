@@ -9,6 +9,7 @@ use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\Confi
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProviderInterface;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\System\SystemConfig\Util\ConfigReader as BundleXmlConfigReader;
@@ -16,6 +17,7 @@ use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
+#[CoversClass(ConfigurationCardConfigReaderPass::class)]
 final class ConfigurationCardConfigReaderPassTest extends TestCase
 {
     public static function processAfterAlreadyRunProvider(): \Generator

@@ -6,9 +6,11 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Unit\ConfigurationCardCo
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ConfigurationCardProviderProvider::class)]
 final class ConfigurationCardProviderProviderTest extends TestCase
 {
     public static function constructionProvider(): \Generator

@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Unit;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\GeneralFieldInformation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(GeneralFieldInformation::class)]
 final class GeneralFieldInformationTest extends TestCase
 {
     public static function constructionProvider(): \Generator

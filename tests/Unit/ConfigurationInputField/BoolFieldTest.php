@@ -7,9 +7,11 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Unit\ConfigurationInputF
 use Generator;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField\BoolField;
 use ITB\ShopwareCodeBasedPluginConfiguration\GeneralFieldInformation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(BoolField::class)]
 final class BoolFieldTest extends TestCase
 {
     public static function constructionProvider(): Generator

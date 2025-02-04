@@ -7,9 +7,11 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Unit\ConfigurationInputF
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField\SingleSelectField;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationInputField\SingleSelectFieldOption;
 use ITB\ShopwareCodeBasedPluginConfiguration\GeneralFieldInformation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(SingleSelectField::class)]
 final class SingleSelectFieldTest extends TestCase
 {
     public static function constructionProvider(): \Generator
