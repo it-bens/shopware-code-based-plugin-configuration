@@ -47,6 +47,8 @@ public function build(ContainerBuilder $container): void
 While the mentioned compiler pass is sufficient to generate the plugin configuration at runtime, a convenient feature is missing: default values. The `ConfigurationCardConfigSaverPass` is required to "hack" into the Shopware plugin configuration persistence.
 
 ```php
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardProviderTaggingPass;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
 use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigSaverPass;
 
@@ -55,6 +57,7 @@ public function build(ContainerBuilder $container): void
     // ...
     parent::build($container);
 
+    $container->addCompilerPass(new ConfigurationCardProviderTaggingPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1000);
     $container->addCompilerPass(new ConfigurationCardConfigReaderPass());
     $container->addCompilerPass(new ConfigurationCardConfigSaverPass());
 }
@@ -137,7 +140,7 @@ $configurationCard = new ConfigurationCard(
 
 ### Injecting the cards into the configuration
 
-The package uses services that implement the `ConfigurationCardProvider` interface. You can create as many implementations in service instances as you like. Because Shopware uses the same loading mechanism for all plugins, the scope of the `ConfigurationCardProvider` has to be declared. This is done in the `getBundleClasses` method of the plugin class.
+The package uses services that implement the `ConfigurationCardProvider` interface and use the `AsConfigurationCardProvider`. Because Shopware uses the same loading mechanism for all plugins, the scope of the `ConfigurationCardProvider` has to be declared. This is done in the `getBundleClasses` method of the plugin class.
 
 ```php
 /**
@@ -150,12 +153,14 @@ public function getBundleClasses(): array {
 }
 ```
 
+The providers are sorted with the priority value of the `AsConfigurationCardProvider` tag.
 The `getPriority` method is used to sort the providers if more than one provider is registered for the same plugin.
 
 ```php
-public function getPriority(): int {
-    return 100;
-}
+use ITB\ShopwareCodeBasedPluginConfiguration\Attribute\AsConfigurationCardProvider;
+
+#[AsConfigurationCardProvider(priority: 1000)]
+...
 ```
 
 And finally the `getConfigurationCards` method is used to return the configuration cards.
