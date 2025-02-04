@@ -19,7 +19,7 @@ final class ConfigurationCardProviderProvider implements ConfigurationCardProvid
     public function getBundleClasses(): array
     {
         $bundleClasses = [];
-        foreach ($this->getConfigurationCardProviders() as $configurationCardProvider) {
+        foreach ($this->configurationCardProviders as $configurationCardProvider) {
             $bundleClasses = array_merge($bundleClasses, $configurationCardProvider->getBundleClasses());
         }
 
@@ -31,13 +31,6 @@ final class ConfigurationCardProviderProvider implements ConfigurationCardProvid
      */
     public function getConfigurationCardProviders(): iterable
     {
-        $configurationCardProviders = [...$this->configurationCardProviders];
-
-        uasort(
-            $configurationCardProviders,
-            static fn (ConfigurationCardProvider $a, ConfigurationCardProvider $b): int => $b->getPriority() <=> $a->getPriority()
-        );
-
-        return array_values($configurationCardProviders);
+        return $this->configurationCardProviders;
     }
 }

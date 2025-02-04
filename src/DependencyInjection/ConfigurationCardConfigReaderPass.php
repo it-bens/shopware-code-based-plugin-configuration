@@ -7,7 +7,6 @@ namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProviderInterface;
-use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
 use Shopware\Core\System\SystemConfig\Util\ConfigReader as BundleXmlConfigReader;
 use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -17,35 +16,21 @@ use Symfony\Component\DependencyInjection\Reference;
 
 final class ConfigurationCardConfigReaderPass implements CompilerPassInterface
 {
-    public const CONFIGURATION_CARD_PROVIDER_TAG = 'itb.shopware_code_based_plugin_configuration.configuration_card_provider';
-
     public function process(ContainerBuilder $container): void
     {
         if ($this->didCompilerPassAlreadyRun($container)) {
             return;
         }
 
-        foreach ($container->getDefinitions() as $id => $definition) {
-            $reflection = $container->getReflectionClass($definition->getClass(), false);
-            if (! $reflection instanceof \ReflectionClass) {
-                continue;
-            }
-
-            if ($reflection->implementsInterface(ConfigurationCardProvider::class)) {
-                $definition->addTag(self::CONFIGURATION_CARD_PROVIDER_TAG);
-                $container->setDefinition($id, $definition);
-            }
-        }
-
-        $configurationCardProviderDefinitions = [];
-        foreach (array_keys($container->findTaggedServiceIds(self::CONFIGURATION_CARD_PROVIDER_TAG)) as $id) {
-            $configurationCardProviderDefinitions[] = new Reference($id);
+        $configurationCardProviderReferences = new ConfigurationCardProviderReferenceCollection();
+        foreach ($container->findTaggedServiceIds(Tags::CONFIGURATION_CARD_PROVIDER_TAG) as $id => $tags) {
+            $configurationCardProviderReferences->add($id, $tags[0]['priority']);
         }
 
         $configurationCardProviderProviderDefinition = new Definition(ConfigurationCardProviderProvider::class);
         $configurationCardProviderProviderDefinition->setArgument(
             '$configurationCardProviders',
-            new IteratorArgument($configurationCardProviderDefinitions)
+            new IteratorArgument($configurationCardProviderReferences->getReferences())
         );
 
         $container->addDefinitions([
