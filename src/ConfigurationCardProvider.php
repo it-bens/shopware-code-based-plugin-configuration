@@ -17,6 +17,4 @@ interface ConfigurationCardProvider
      * @return ConfigurationCard[]
      */
     public function getConfigurationCards(): array;
-
-    public function getPriority(): int;
 }

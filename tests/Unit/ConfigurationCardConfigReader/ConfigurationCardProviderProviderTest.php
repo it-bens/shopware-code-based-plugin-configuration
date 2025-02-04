@@ -14,8 +14,6 @@ final class ConfigurationCardProviderProviderTest extends TestCase
     public static function constructionProvider(): \Generator
     {
         $configurationCardProvider = self::createStub(ConfigurationCardProvider::class);
-        $configurationCardProvider->method('getPriority')
-            ->willReturn(0);
 
         yield [[$configurationCardProvider]];
     }
@@ -80,11 +78,7 @@ final class ConfigurationCardProviderProviderTest extends TestCase
         yield 'without configuration card providers' => [$configurationCardProviderProvider, []];
 
         $configurationCardProvider1 = self::createStub(ConfigurationCardProvider::class);
-        $configurationCardProvider1->method('getPriority')
-            ->willReturn(0);
         $configurationCardProvider2 = self::createStub(ConfigurationCardProvider::class);
-        $configurationCardProvider2->method('getPriority')
-            ->willReturn(1);
 
         $configurationCardProviderProvider = new ConfigurationCardProviderProvider([
             $configurationCardProvider1,

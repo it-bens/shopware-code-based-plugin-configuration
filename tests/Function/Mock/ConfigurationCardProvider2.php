@@ -19,9 +19,4 @@ final class ConfigurationCardProvider2 implements ConfigurationCardProvider
     {
         return [];
     }
-
-    public function getPriority(): int
-    {
-        return 0;
-    }
 }
