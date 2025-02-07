@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\Attribute\AsConfigurationCardProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\Tags;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

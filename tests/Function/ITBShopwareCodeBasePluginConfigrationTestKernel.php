@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Function;
 
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigSaverPass;
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardProviderTaggingPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPassHelper;
 use ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\TestCompiler\PublishServicesForTestsCompilerPass;
 use ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\TestCompiler\ShopwareServicesCompilerPass;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\Kernel;
@@ -48,9 +45,7 @@ final class ITBShopwareCodeBasePluginConfigrationTestKernel extends Kernel
 
             $container->addCompilerPass(new ShopwareServicesCompilerPass());
 
-            $container->addCompilerPass(new ConfigurationCardProviderTaggingPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1000);
-            $container->addCompilerPass(new ConfigurationCardConfigReaderPass());
-            $container->addCompilerPass(new ConfigurationCardConfigSaverPass());
+            CompilerPassHelper::addCompilerPassesToContainerBuilder($container);
 
             $container->addCompilerPass(new PublishServicesForTestsCompilerPass());
         });
