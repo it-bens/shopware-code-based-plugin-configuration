@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Unit\DependencyInjection;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Unit\DependencyInjection\CompilerPass;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProviderInterface;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardConfigReaderPass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardConfigReaderPass;
 
 use Symfony\Component\DependencyInjection\Reference;
 

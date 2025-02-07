@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProviderInterface;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigSaver;

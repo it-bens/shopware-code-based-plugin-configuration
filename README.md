@@ -28,29 +28,53 @@ public function executeComposerCommands(): bool
 }
 ```
 
-This package provides two Symfony compiler passes. The `ConfigurationCardConfigReaderPass` will add all the services necessary for the configuration generation to the service container. It can be added to the plugin's `build` method.
+### The convenient way
+
+> [!TIP]
+> This is the recommended way to register the compiler passes if you don't plan to do modifications on you're own because the helper will always be up-to-date.
+
+This package provides a little helper to register all Symfony compiler passes that are required to use it. It can be added to the plugin's `build` method.
 
 ```php
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPassHelper;
 
 public function build(ContainerBuilder $container): void
 {
     // ...
     parent::build($container);
 
+    CompilerPassHelper::addCompilerPassesToContainerBuilder($container);
+}
+```
+
+### The manual way
+
+The `ConfigurationCardConfigReaderPass` will add all the services necessary for the configuration generation to the service container.
+
+```php
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardConfigReaderPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardProviderTaggingPass;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
+
+public function build(ContainerBuilder $container): void
+{
+    // ...
+    parent::build($container);
+
+    $container->addCompilerPass(new ConfigurationCardProviderTaggingPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION, 1000);
     $container->addCompilerPass(new ConfigurationCardConfigReaderPass());
 }
 ```
 
-### Why are the default configuration values missing?
+#### Why are the default configuration values missing?
 
 While the mentioned compiler pass is sufficient to generate the plugin configuration at runtime, a convenient feature is missing: default values. The `ConfigurationCardConfigSaverPass` is required to "hack" into the Shopware plugin configuration persistence.
 
 ```php
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardProviderTaggingPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardConfigReaderPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardConfigSaverPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardProviderTaggingPass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigReaderPass;
-use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\ConfigurationCardConfigSaverPass;
 
 public function build(ContainerBuilder $container): void
 {
@@ -64,6 +88,13 @@ public function build(ContainerBuilder $container): void
 ```
 
 For detailed information why this is necessary and why the usage is "hacky" look at [How does the package work? - Shopware plugin configuration persistence](#shopware-plugin-configuration-persistence).
+
+#### What's that "TaggingPass"?
+
+> [!NOTE]  
+> Additional information. This is not required if the recommended way of compiler pass registration is used.
+
+This package uses attribute-based tagging of services for the registration of `ConfigurationCardProvider` implementations. In a normal project, the registration of the attribute for autotagging could be done in the service configuration. In order not bother developers with this, a compiler pass was introduces for that. Unfortunately, the Symfony compiler pass that executes the actual logic of autotagging has a high priority (+100). In order to work correctly, the `ConfigurationCardProviderTaggingPass` has to be added with an even higher priority and in the first compiler step.
 
 ## How can I use this package?
 

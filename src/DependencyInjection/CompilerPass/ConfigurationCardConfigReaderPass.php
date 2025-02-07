@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProviderInterface;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPass\ConfigurationCardConfigReaderPass\ConfigurationCardProviderReferenceCollection;
+use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\Tags;
 use Shopware\Core\System\SystemConfig\Util\ConfigReader as BundleXmlConfigReader;
 use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
