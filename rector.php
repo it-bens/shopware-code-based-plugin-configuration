@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Frosh\Rector\Set\ShopwareSetList;
 use Rector\CodeQuality\Rector\Foreach_\SimplifyForeachToCoalescingRector;
 use Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector;
 use Rector\CodeQuality\Rector\If_\ConsecutiveNullCompareReturnsToNullCoalesceQueueRector;
@@ -50,6 +51,7 @@ return RectorConfig::configure()
         SymfonySetList::SYMFONY_71,
         PHPUnitSetList::PHPUNIT_100,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        ShopwareSetList::SHOPWARE_6_5_0,
     ])
 
     ->withImportNames(importShortClasses: false, removeUnusedImports: true)
