@@ -14,6 +14,7 @@ use Shopware\Core\System\SystemConfig\Util\ConfigReader as BundleXmlConfigReader
 
 final class ConfigTest extends TestCase
 {
+    // use AddTestClassMethodsTrait; # This is required in higher PHPUnit versions
     use IntegrationTestBehaviour;
 
     public static function pluginConfigurationProvider(): \Generator

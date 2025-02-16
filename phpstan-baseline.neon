@@ -23,3 +23,9 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: src/DependencyInjection/CompilerPass/ConfigurationCardProviderTaggingPass.php
+
+		-
+			message: '#^Trait ITB\\ShopwareCodeBasedPluginConfigurationTestPlugin\\Test\\AddTestClassMethodsTrait is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: tests/E2E/Plugin/tests/AddTestClassMethodsTrait.php

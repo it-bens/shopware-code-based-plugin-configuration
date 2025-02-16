@@ -11,9 +11,12 @@ declare(strict_types=1);
 use Shopware\Core\TestBootstrapper;
 
 $platformRoot = dirname(__DIR__, 4);
+echo $platformRoot . PHP_EOL;
 
 if (is_readable($platformRoot . '/src/Core/TestBootstrapper.php')) {
     require $platformRoot . '/src/Core/TestBootstrapper.php';
+} elseif (is_readable($platformRoot . '/vendor/shopware/core/TestBootstrapper.php')) {
+    require $platformRoot . '/vendor/shopware/core/TestBootstrapper.php';
 } else {
     require __DIR__ . '/../vendor/shopware/core/TestBootstrapper.php';
 }
