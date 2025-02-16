@@ -12,6 +12,7 @@ use Shopware\Core\System\SystemConfig\Util\ConfigReader as BundleXmlConfigReader
 
 final class ServiceTest extends TestCase
 {
+    // use AddTestClassMethodsTrait; # This is required in higher PHPUnit versions
     use IntegrationTestBehaviour;
 
     public function testConfigReaderReplacement(): void
