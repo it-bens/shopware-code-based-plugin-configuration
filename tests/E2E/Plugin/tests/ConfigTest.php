@@ -36,6 +36,8 @@ final class ConfigTest extends TestCase
 
     /**
      * @dataProvider pluginConfigurationProvider
+     *
+     * @param array<int|string, mixed> $expectedPluginConfig
      */
     #[DataProvider('pluginConfigurationProvider')]
     public function testPluginConfiguration(array $expectedPluginConfig): void
@@ -49,6 +51,16 @@ final class ConfigTest extends TestCase
             ->get(BundleXmlConfigReader::class);
 
         $pluginConfig = $configReader->getConfigFromBundle($plugin);
-        $this->assertJsonStringEqualsJsonString(json_encode($expectedPluginConfig), json_encode($pluginConfig));
+        $pluginConfigJson = json_encode($pluginConfig);
+        if ($pluginConfigJson === false) {
+            $this->fail('Failed to encode plugin config to JSON');
+        }
+
+        $expectedPluginConfigJson = json_encode($expectedPluginConfig);
+        if ($expectedPluginConfigJson === false) {
+            $this->fail('Failed to encode expected plugin config to JSON');
+        }
+
+        $this->assertJsonStringEqualsJsonString($expectedPluginConfigJson, $pluginConfigJson);
     }
 }

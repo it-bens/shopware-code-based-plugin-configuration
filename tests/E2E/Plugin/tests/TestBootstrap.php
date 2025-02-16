@@ -18,8 +18,13 @@ if (is_readable($platformRoot . '/src/Core/TestBootstrapper.php')) {
     require __DIR__ . '/../vendor/shopware/core/TestBootstrapper.php';
 }
 
+$projectDir = $_SERVER['PROJECT_ROOT'];
+if (is_string($projectDir) === false) {
+    $projectDir = $platformRoot;
+}
+
 return (new TestBootstrapper())
-    ->setProjectDir($_SERVER['PROJECT_ROOT'] ?? $platformRoot)
+    ->setProjectDir($projectDir)
     ->setForceInstallPlugins(true)
     ->addCallingPlugin()
     ->bootstrap()

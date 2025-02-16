@@ -56,6 +56,9 @@ final readonly class TestConfigurationCardProvider implements ConfigurationCardP
         return $configurationCards;
     }
 
+    /**
+     * @return array<int|string, mixed>
+     */
     public static function getExpectedBundleConfig(): array
     {
         return [
