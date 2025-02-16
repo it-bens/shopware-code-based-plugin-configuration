@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin\Test;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin\TestConfigurationCardProvider;
@@ -23,12 +25,12 @@ final class ConfigTest extends TestCase
                     'de-DE' => 'Test Plugin Konfiguration',
                 ],
                 'name' => null,
-                'elements' => []
+                'elements' => [],
             ],
         ];
 
         yield [
-            'expectedPluginConfig' => array_merge($configFromXml, TestConfigurationCardProvider::getExpectedBundleConfig())
+            'expectedPluginConfig' => array_merge($configFromXml, TestConfigurationCardProvider::getExpectedBundleConfig()),
         ];
     }
 
@@ -39,10 +41,12 @@ final class ConfigTest extends TestCase
     public function testPluginConfiguration(array $expectedPluginConfig): void
     {
         /** @var TestPlugin $plugin */
-        $plugin = $this->getContainer()->get(TestPlugin::class);
+        $plugin = $this->getContainer()
+            ->get(TestPlugin::class);
 
         /** @var ConfigReader $configReader */
-        $configReader = $this->getContainer()->get(BundleXmlConfigReader::class);
+        $configReader = $this->getContainer()
+            ->get(BundleXmlConfigReader::class);
 
         $pluginConfig = $configReader->getConfigFromBundle($plugin);
         $this->assertJsonStringEqualsJsonString(json_encode($expectedPluginConfig), json_encode($pluginConfig));

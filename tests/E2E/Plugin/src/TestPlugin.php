@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPassHelper;

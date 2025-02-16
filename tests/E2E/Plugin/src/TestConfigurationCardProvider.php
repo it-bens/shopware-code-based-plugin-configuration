@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\Attribute\AsConfigurationCardProvider;
@@ -19,11 +21,7 @@ final readonly class TestConfigurationCardProvider implements ConfigurationCardP
 
     public function getConfigurationCards(): array
     {
-        $listingFilterProperties = [
-            'customerSpecificPrice',
-            'specialProductProperty',
-            'businessSpecificProductGroup'
-        ];
+        $listingFilterProperties = ['customerSpecificPrice', 'specialProductProperty', 'businessSpecificProductGroup'];
 
         $configurationCards = [];
         foreach ($listingFilterProperties as $listingFilterProperty) {
@@ -62,110 +60,110 @@ final readonly class TestConfigurationCardProvider implements ConfigurationCardP
     {
         return [
             [
-                "title" => [
-                    "en-GB" => "Product Filter: customerSpecificPrice",
-                    "de-DE" => "ProductFilter: customerSpecificPrice"
+                'title' => [
+                    'en-GB' => 'Product Filter: customerSpecificPrice',
+                    'de-DE' => 'ProductFilter: customerSpecificPrice',
                 ],
-                "name" => null,
-                "elements" => [
+                'name' => null,
+                'elements' => [
                     [
-                        "name" => "customerSpecificPriceFilterEnabled",
-                        "label" => [
-                            "en-GB" => "Filter enabled",
-                            "de-DE" => "Filter aktiviert"
+                        'name' => 'customerSpecificPriceFilterEnabled',
+                        'label' => [
+                            'en-GB' => 'Filter enabled',
+                            'de-DE' => 'Filter aktiviert',
                         ],
-                        "helpText" => [
-                            "en-GB" => null,
-                            "de-DE" => null
+                        'helpText' => [
+                            'en-GB' => null,
+                            'de-DE' => null,
                         ],
-                        "type" => "bool",
-                        "defaultValue" => "false"
+                        'type' => 'bool',
+                        'defaultValue' => 'false',
                     ],
                     [
-                        "name" => "customerSpecificPriceFilterPosition",
-                        "label" => [
-                            "en-GB" => "Filter position",
-                            "de-DE" => "Filter Position"
+                        'name' => 'customerSpecificPriceFilterPosition',
+                        'label' => [
+                            'en-GB' => 'Filter position',
+                            'de-DE' => 'Filter Position',
                         ],
-                        "helpText" => [
-                            "en-GB" => null,
-                            "de-DE" => null
+                        'helpText' => [
+                            'en-GB' => null,
+                            'de-DE' => null,
                         ],
-                        "type" => "int",
-                        "defaultValue" => ""
-                    ]
-                ]
+                        'type' => 'int',
+                        'defaultValue' => '',
+                    ],
+                ],
             ],
             [
-                "title" => [
-                    "en-GB" => "Product Filter: specialProductProperty",
-                    "de-DE" => "ProductFilter: specialProductProperty"
+                'title' => [
+                    'en-GB' => 'Product Filter: specialProductProperty',
+                    'de-DE' => 'ProductFilter: specialProductProperty',
                 ],
-                "name" => null,
-                "elements" => [
+                'name' => null,
+                'elements' => [
                     [
-                        "name" => "specialProductPropertyFilterEnabled",
-                        "label" => [
-                            "en-GB" => "Filter enabled",
-                            "de-DE" => "Filter aktiviert"
+                        'name' => 'specialProductPropertyFilterEnabled',
+                        'label' => [
+                            'en-GB' => 'Filter enabled',
+                            'de-DE' => 'Filter aktiviert',
                         ],
-                        "helpText" => [
-                            "en-GB" => null,
-                            "de-DE" => null
+                        'helpText' => [
+                            'en-GB' => null,
+                            'de-DE' => null,
                         ],
-                        "type" => "bool",
-                        "defaultValue" => "false"
+                        'type' => 'bool',
+                        'defaultValue' => 'false',
                     ],
                     [
-                        "name" => "specialProductPropertyFilterPosition",
-                        "label" => [
-                            "en-GB" => "Filter position",
-                            "de-DE" => "Filter Position"
+                        'name' => 'specialProductPropertyFilterPosition',
+                        'label' => [
+                            'en-GB' => 'Filter position',
+                            'de-DE' => 'Filter Position',
                         ],
-                        "helpText" => [
-                            "en-GB" => null,
-                            "de-DE" => null
+                        'helpText' => [
+                            'en-GB' => null,
+                            'de-DE' => null,
                         ],
-                        "type" => "int",
-                        "defaultValue" => ""
-                    ]
-                ]
+                        'type' => 'int',
+                        'defaultValue' => '',
+                    ],
+                ],
             ],
             [
-                "title" => [
-                    "en-GB" => "Product Filter: businessSpecificProductGroup",
-                    "de-DE" => "ProductFilter: businessSpecificProductGroup"
+                'title' => [
+                    'en-GB' => 'Product Filter: businessSpecificProductGroup',
+                    'de-DE' => 'ProductFilter: businessSpecificProductGroup',
                 ],
-                "name" => null,
-                "elements" => [
+                'name' => null,
+                'elements' => [
                     [
-                        "name" => "businessSpecificProductGroupFilterEnabled",
-                        "label" => [
-                            "en-GB" => "Filter enabled",
-                            "de-DE" => "Filter aktiviert"
+                        'name' => 'businessSpecificProductGroupFilterEnabled',
+                        'label' => [
+                            'en-GB' => 'Filter enabled',
+                            'de-DE' => 'Filter aktiviert',
                         ],
-                        "helpText" => [
-                            "en-GB" => null,
-                            "de-DE" => null
+                        'helpText' => [
+                            'en-GB' => null,
+                            'de-DE' => null,
                         ],
-                        "type" => "bool",
-                        "defaultValue" => "false"
+                        'type' => 'bool',
+                        'defaultValue' => 'false',
                     ],
                     [
-                        "name" => "businessSpecificProductGroupFilterPosition",
-                        "label" => [
-                            "en-GB" => "Filter position",
-                            "de-DE" => "Filter Position"
+                        'name' => 'businessSpecificProductGroupFilterPosition',
+                        'label' => [
+                            'en-GB' => 'Filter position',
+                            'de-DE' => 'Filter Position',
                         ],
-                        "helpText" => [
-                            "en-GB" => null,
-                            "de-DE" => null
+                        'helpText' => [
+                            'en-GB' => null,
+                            'de-DE' => null,
                         ],
-                        "type" => "int",
-                        "defaultValue" => ""
-                    ]
-                ]
-            ]
+                        'type' => 'int',
+                        'defaultValue' => '',
+                    ],
+                ],
+            ],
         ];
     }
 }
