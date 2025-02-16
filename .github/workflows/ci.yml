@@ -109,3 +109,72 @@ jobs:
           files: ./coverage.xml
           verbose: true
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  e2e-tests:
+    name: E2E tests
+    runs-on: 'ubuntu-latest'
+
+    steps:
+      - name: Setup Shopware
+        uses: shopware/setup-shopware@main
+        with:
+          shopware-version: 'v6.5.8.16'
+          php-version: 8.2
+          mysql-version: 'mariadb:10.11'
+          install: false
+
+      - name: Checkout code for test plugin
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: ./custom/plugins/TestPlugin
+
+      - name: Replace repository files with test plugin files
+        run: |
+          mv ./custom/plugins/TestPlugin/tests/E2E/Plugin ./custom/plugins/TestPlugin_tmp && \
+          rm -rf ./custom/plugins/TestPlugin && \
+          mv ./custom/plugins/TestPlugin_tmp ./custom/plugins/TestPlugin
+
+      - name: Checkout code for package
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration
+
+      - name: Remove unnecessary package files
+        run: |
+          rm -rf ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/tests \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/.git \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/.github \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/.gitignore \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/LICENSE \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/README.md \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/captainhook.json \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/ecs.php \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/phpstan.baseline.neon \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/phpstan.neon.dist \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/phpunit.xml.dist \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/rector.php \
+          ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/renovate.json
+
+      - name: Prepare Shopware composer.json
+        run: |
+          jq '. + if has("minimum-stability") then . else . + {"minimum-stability": "dev"} end | . + {"prefer-stable": true}' composer.json > composer.tmp.json
+          mv composer.tmp.json composer.json
+          jq '.repositories = [
+            {"type": "path", "url": "custom/plugins/*/packages/*", "options": {"symlink": true}},
+            {"type": "composer", "url": "https://packagist.org", "exclude": ["it-bens/shopware-code-based-plugin-configuration"]}
+          ] + (.repositories // [])' composer.json > composer.tmp.json
+          mv composer.tmp.json composer.json
+        shell: bash
+
+      - name: Install package
+        run: composer require it-bens/shopware-code-based-plugin-configuration
+
+      - name: Run E2E tests
+        working-directory: ./custom/plugins/TestPlugin
+        run: |
+          composer dump-autoload --dev
+          ${GITHUB_WORKSPACE}/vendor/bin/phpunit \
+            --configuration phpunit.pipeline.xml \
+            --log-junit ${GITHUB_WORKSPACE}/phpunit.junit.xml \
+            --coverage-cobertura ${GITHUB_WORKSPACE}/cobertura.xml \
+            --coverage-text
