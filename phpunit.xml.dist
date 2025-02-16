@@ -7,8 +7,11 @@
     </php>
 
     <testsuites>
-        <testsuite name="Test suite">
-            <directory>tests</directory>
+        <testsuite name="unit tests">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="function tests">
+            <directory>tests/Function</directory>
         </testsuite>
     </testsuites>
 
