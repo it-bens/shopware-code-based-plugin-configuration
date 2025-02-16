@@ -157,7 +157,7 @@ jobs:
 
       - name: Prepare Shopware composer.json
         run: |
-          jq '. + if has("minimum-stability") then . else . + {"minimum-stability": "dev"} end | . + {"prefer-stable": true}' composer.tmp.json > composer.json
+          jq '. + if has("minimum-stability") then . else . + {"minimum-stability": "dev"} end | . + {"prefer-stable": true}' composer.json > composer.tmp.json
           mv composer.tmp.json composer.json
           jq '.repositories = [
             {"type": "path", "url": "custom/plugins/*/packages/*", "options": {"symlink": true}},
