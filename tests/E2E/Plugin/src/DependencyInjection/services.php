@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin\TestConfigurationCardProvider;
+use ITB\ShopwareCodeBasedPluginConfigurationTestPlugin\TestConfigurationCardProvider;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {

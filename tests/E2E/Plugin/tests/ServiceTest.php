@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin\Test;
+namespace ITB\ShopwareCodeBasedPluginConfigurationTestPlugin\Test;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigSaver;

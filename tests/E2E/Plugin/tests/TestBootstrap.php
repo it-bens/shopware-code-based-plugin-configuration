@@ -18,7 +18,7 @@ if (is_readable($platformRoot . '/src/Core/TestBootstrapper.php')) {
     require __DIR__ . '/../vendor/shopware/core/TestBootstrapper.php';
 }
 
-$projectDir = $_SERVER['PROJECT_ROOT'];
+$projectDir = $_SERVER['PROJECT_ROOT'] ?? null;
 if (is_string($projectDir) === false) {
     $projectDir = $platformRoot;
 }

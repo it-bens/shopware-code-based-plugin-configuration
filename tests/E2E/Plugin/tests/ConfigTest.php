@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin\Test;
+namespace ITB\ShopwareCodeBasedPluginConfigurationTestPlugin\Test;
 
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin\TestConfigurationCardProvider;
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\E2E\Plugin\TestPlugin;
+use ITB\ShopwareCodeBasedPluginConfigurationTestPlugin\TestConfigurationCardProvider;
+use ITB\ShopwareCodeBasedPluginConfigurationTestPlugin\TestPlugin;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;

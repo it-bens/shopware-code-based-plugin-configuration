@@ -17,7 +17,7 @@
     "it-bens/shopware-code-based-plugin-configuration": "*"
   },
   "extra": {
-    "shopware-plugin-class": "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\E2E\\Plugin\\TestPlugin",
+    "shopware-plugin-class": "ITB\\ShopwareCodeBasedPluginConfigurationTestPlugin\\TestPlugin",
     "copyright": "IT Martin Bens",
     "label": {
       "de-DE": "Test Plugin",
@@ -26,12 +26,12 @@
   },
   "autoload": {
     "psr-4": {
-      "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\E2E\\Plugin\\": "src/"
+      "ITB\\ShopwareCodeBasedPluginConfigurationTestPlugin\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\E2E\\Plugin\\Test\\": "tests/"
+      "ITB\\ShopwareCodeBasedPluginConfigurationTestPlugin\\Test\\": "tests/"
     }
   }
 }
