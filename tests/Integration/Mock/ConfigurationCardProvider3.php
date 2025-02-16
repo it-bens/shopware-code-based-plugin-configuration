@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\Mock;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration\Mock;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\Attribute\AsConfigurationCardProvider;
 

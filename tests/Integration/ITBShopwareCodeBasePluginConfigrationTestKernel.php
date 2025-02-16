@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Function;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\DependencyInjection\CompilerPassHelper;
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\TestCompiler\PublishServicesForTestsCompilerPass;
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\TestCompiler\ShopwareServicesCompilerPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration\TestCompiler\PublishServicesForTestsCompilerPass;
+use ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration\TestCompiler\ShopwareServicesCompilerPass;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;

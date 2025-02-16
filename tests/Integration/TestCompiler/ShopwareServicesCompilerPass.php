@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\TestCompiler;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration\TestCompiler;
 
 use Shopware\Core\Framework\Plugin\KernelPluginCollection;
 use Shopware\Core\System\SystemConfig\SystemConfigService;

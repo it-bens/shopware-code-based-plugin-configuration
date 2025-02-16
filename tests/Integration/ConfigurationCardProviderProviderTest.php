@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Function;
+namespace ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration;
 
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProvider;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardConfigReader\ConfigurationCardProviderProviderInterface;
 use ITB\ShopwareCodeBasedPluginConfiguration\ConfigurationCardProvider;
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\Mock\ConfigurationCardProvider1;
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\Mock\ConfigurationCardProvider2;
-use ITB\ShopwareCodeBasedPluginConfiguration\Test\Function\Mock\ConfigurationCardProvider3;
+use ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration\Mock\ConfigurationCardProvider1;
+use ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration\Mock\ConfigurationCardProvider2;
+use ITB\ShopwareCodeBasedPluginConfiguration\Test\Integration\Mock\ConfigurationCardProvider3;
 use PHPUnit\Framework\TestCase;
 
 final class ConfigurationCardProviderProviderTest extends TestCase

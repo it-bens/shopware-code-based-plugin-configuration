@@ -10,8 +10,8 @@
         <testsuite name="unit tests">
             <directory>tests/Unit</directory>
         </testsuite>
-        <testsuite name="function tests">
-            <directory>tests/Function</directory>
+        <testsuite name="integration tests">
+            <directory>tests/Integration</directory>
         </testsuite>
     </testsuites>
 
