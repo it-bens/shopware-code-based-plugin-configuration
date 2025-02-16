@@ -58,7 +58,7 @@ jobs:
 
       - name: Lower the minimum stability to dev
         run: |
-          jq -i '. + {minimum-stability: "dev"}' composer.json > composer.tmp.json
+          jq '. + {minimum-stability: "dev"}' composer.json > composer.tmp.json
           mv composer.tmp.json composer.json
         shell: bash
 
