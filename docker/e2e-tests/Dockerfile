@@ -1,4 +1,6 @@
-FROM dockware/dev:6.5.8.16
+ARG SHOPWARE_VERSION=6.6.9.0
+
+FROM dockware/dev:$SHOPWARE_VERSION
 
 RUN set -ex; \
     jq '. + {"minimum-stability": "dev"} | . + {"prefer-stable": true}' composer.json > composer.tmp.json && \

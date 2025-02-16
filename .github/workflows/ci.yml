@@ -113,13 +113,21 @@ jobs:
   e2e-tests:
     name: E2E tests
     runs-on: 'ubuntu-latest'
+    strategy:
+      matrix:
+        shopware_version_php_version_phpunit_configuration:
+          - { shopware_version: '6.5.8.16', php_version: '8.2', phpunit_configuration: 'phpunit.shopware-6.5.xml' }
+          - { shopware_version: '6.5.8.16', php_version: '8.3', phpunit_configuration: 'phpunit.shopware-6.5.xml' }
+          - { shopware_version: '6.6.9.0', php_version: '8.2', phpunit_configuration: 'phpunit.shopware-6.6.xml' }
+          - { shopware_version: '6.6.9.0', php_version: '8.3', phpunit_configuration: 'phpunit.shopware-6.6.xml' }
+      fail-fast: false
 
     steps:
       - name: Setup Shopware
         uses: shopware/setup-shopware@main
         with:
-          shopware-version: 'v6.5.8.16'
-          php-version: 8.2
+          shopware-version: "v${{ matrix.shopware_version_php_version_phpunit_configuration.shopware_version }}"
+          php-version: ${{ matrix.shopware_version_php_version_phpunit_configuration.php_version }}
           mysql-version: 'mariadb:10.11'
           install: false
 
@@ -174,7 +182,4 @@ jobs:
         run: |
           composer dump-autoload --dev
           ${GITHUB_WORKSPACE}/vendor/bin/phpunit \
-            --configuration phpunit.pipeline.xml \
-            --log-junit ${GITHUB_WORKSPACE}/phpunit.junit.xml \
-            --coverage-cobertura ${GITHUB_WORKSPACE}/cobertura.xml \
-            --coverage-text
+            --configuration ${{ matrix.shopware_version_php_version_phpunit_configuration.phpunit_configuration }}
