@@ -56,11 +56,14 @@ jobs:
           ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/rector.php \
           ./custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/renovate.json
 
+      - name: Lower the minimum stability to dev
+        run: |
+          jq -i '. + {minimum-stability: "dev"}' composer.json
+        shell: bash
+
       - name: Exclude package from packagist.org source
         run: |
-          jq '.repositories += [{"type": "composer", "url": "https://packagist.org", "exclude": ["it-bens/shopware-code-based-plugin-configuration"]}]' \
-                composer.json > composer.tmp.json
-          mv composer.tmp.json composer.json
+          jq -i '.repositories += [{"type": "composer", "url": "https://packagist.org", "exclude": ["it-bens/shopware-code-based-plugin-configuration"]}]' composer.json
         shell: bash
 
       - name: Install package
