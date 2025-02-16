@@ -14,18 +14,14 @@ jobs:
   e2e-tests:
     name: E2E tests
     runs-on: 'ubuntu-latest'
-    strategy:
-      matrix:
-        shopware-version: [ 'v6.5.8.15', 'v6.5.8.16' ]
-      fail-fast: false
 
     steps:
       - name: Setup Shopware
         uses: shopware/setup-shopware@main
         with:
-          shopware-version: ${{ matrix.shopware-version }}
+          shopware-version: '6.5.8.16'
           php-version: 8.2
-          mysql-version: "mariadb:10.11"
+          mysql-version: 'mariadb:10.11'
           install: true
 
       - name: Checkout code for test plugin
@@ -67,9 +63,8 @@ jobs:
         working-directory: ./custom/plugins/TestPlugin
         run: |
           composer dump-autoload --dev
-          php -d pcov.enabled=1 -d pcov.directory=$PWD/src -d pcov.exclude='~(vendor|tests|node_modules)~' \
-            ${GITHUB_WORKSPACE}/vendor/bin/phpunit \
-            --configuration phpunit.xml.dist \
+          ${GITHUB_WORKSPACE}/vendor/bin/phpunit \
+            --configuration phpunit.pipeline.xml \
             --log-junit ${GITHUB_WORKSPACE}/phpunit.junit.xml \
             --coverage-cobertura ${GITHUB_WORKSPACE}/cobertura.xml \
             --coverage-text
