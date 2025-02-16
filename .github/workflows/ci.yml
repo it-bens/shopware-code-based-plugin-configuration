@@ -22,7 +22,7 @@ jobs:
           shopware-version: 'v6.5.8.16'
           php-version: 8.2
           mysql-version: 'mariadb:10.11'
-          install: true
+          install: false
 
       - name: Checkout code for test plugin
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2

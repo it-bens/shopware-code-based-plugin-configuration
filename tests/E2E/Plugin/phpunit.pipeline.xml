@@ -4,7 +4,6 @@
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
          bootstrap="tests/TestBootstrap.php"
          cacheResult="false"
-         executionOrder="random"
          convertDeprecationsToExceptions="false">
 
     <php>
@@ -21,10 +20,4 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-
-    <source>
-        <include>
-            <directory suffix=".php">./packages/itb-shopware-code-based-plugin-configuration/src/</directory>
-        </include>
-    </source>
 </phpunit>
