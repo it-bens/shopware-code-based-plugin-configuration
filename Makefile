@@ -17,3 +17,6 @@ static-analysis:
 tests:
 	composer unit-tests
 	composer integration-tests
+
+e2e-tests:
+	docker compose exec -u www-data $(E2E_TESTS_SHOPWARE_SERVICE) /var/www/html/vendor/bin/phpunit --configuration /var/www/html/custom/plugins/TestPlugin/phpunit.pipeline.xml
