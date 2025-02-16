@@ -1,0 +1,16 @@
+services:
+  e2e-tests-shopware:
+    build:
+      context: .
+      dockerfile: docker/e2e-tests/Dockerfile
+    environment:
+      PHP_VERSION: 8.2
+      XDEBUG_ENABLED: 1
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - "./tests/E2E/Plugin:/var/www/html/custom/plugins/TestPlugin"
+      - "./:/var/www/html/custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration"
+      # exclude by using anonymous volumes
+      - "/var/www/html/custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/tests/"
+      - "/var/www/html/custom/plugins/TestPlugin/packages/itb-shopware-code-based-plugin-configuration/vendor/"
