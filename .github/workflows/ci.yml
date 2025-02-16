@@ -64,6 +64,7 @@ jobs:
             {"type": "composer", "url": "https://packagist.org", "exclude": ["it-bens/shopware-code-based-plugin-configuration"]}
           ] + (.repositories // [])' composer.json > composer.tmp.json
           mv composer.tmp.json composer.json
+          cat composer.json
         shell: bash
 
       - name: Install package
