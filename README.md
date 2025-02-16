@@ -2,6 +2,10 @@
 
 [![Tests](https://github.com/it-bens/shopware-code-based-plugin-configuration/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/it-bens/shopware-code-based-plugin-configuration/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/it-bens/shopware-code-based-plugin-configuration/branch/main/graph/badge.svg?token=jWZCkC3PTl)](https://codecov.io/gh/it-bens/shopware-code-based-plugin-configuration)
+![Static Badge](https://img.shields.io/badge/Shopware-6.5-189eff?logo=shopware)
+![Static Badge](https://img.shields.io/badge/Shopware-6.6-189eff?logo=shopware)
+![Packagist Version](https://img.shields.io/packagist/v/it-bens/shopware-code-based-plugin-configuration)
+![Packagist Downloads](https://img.shields.io/packagist/dt/it-bens/shopware-code-based-plugin-configuration)
 
 Shopware provides an easy way to create a plugin configuration without any implementing any frontend code: https://developer.shopware.com/docs/guides/plugins/plugins/plugin-fundamentals/add-plugin-configuration.html
 
@@ -13,7 +17,7 @@ No. While this package is tied to Shopware, it won't react on any events on it's
 
 ## How can add this package in a Shopware plugin?
 
-First, the package has to be installed via composer:
+First, the package has to be installed via composer from [packagist](https://packagist.org/packages/it-bens/shopware-code-based-plugin-configuration):
 
 ```bash
 composer require it-bens/shopware-code-based-plugin-configuration
