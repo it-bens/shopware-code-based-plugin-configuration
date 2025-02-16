@@ -42,6 +42,14 @@
       "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\": "tests/"
     }
   },
+  "scripts": {
+    "style-check": "php vendor/bin/ecs check --config=ecs.php src tests",
+    "style-fix": "php vendor/bin/ecs check --config=ecs.php --fix src tests",
+    "code-upgrade": "php vendor/bin/rector process --config=rector.php src tests",
+    "static-analysis": "php vendor/bin/phpstan analyze --configuration=phpstan.neon --memory-limit=-1 src tests",
+    "unit-tests": "php vendor/bin/phpunit --configuration=phpunit.xml.dist --testsuite \"unit tests\"",
+    "integration-tests": "php vendor/bin/phpunit --configuration=phpunit.xml.dist --testsuite \"integration tests\""
+  },
   "config": {
     "sort-packages": true,
     "allow-plugins": {
