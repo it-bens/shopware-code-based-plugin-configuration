@@ -1,0 +1,37 @@
+{
+  "name": "it-bens/test-plugin",
+  "description": "Test Plugin",
+  "version": "1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "proprietary",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Martin Bens",
+      "email": "martin.bens@it-bens.de"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "it-bens/shopware-code-based-plugin-configuration": "*"
+  },
+  "extra": {
+    "shopware-plugin-class": "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\E2E\\Plugin\\TestPlugin",
+    "copyright": "IT Martin Bens",
+    "label": {
+      "de-DE": "Test Plugin",
+      "en-GB": "Test Plugin"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\E2E\\Plugin\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ITB\\ShopwareCodeBasedPluginConfiguration\\Test\\E2E\\Plugin\\Test\\": "tests/"
+    }
+  }
+}
